@@ -36,4 +36,7 @@ docker exec -it <container-name> bash
 
 # use entrypoint within container
 source ros_entrypoint.sh
+
+# remove docker container
+docker container rm <container-name>
 ```

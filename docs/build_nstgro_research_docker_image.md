@@ -1,6 +1,6 @@
 # Locally Build NSTGRO Research Docker Image
 
-This repo is set up so all we should have to do is pull the most recent image from the image registry and begin code development.  However, if the image needs to be built or rebuilt locally, we can use the following steps.
+This repo is set up so all we should have to do is pull the most recent image from the image registry and begin code development.  However, if the image needs to be built or rebuilt locally, we can use the following steps from the top level directory.
 
 Build the image:
 ```
@@ -25,7 +25,7 @@ docker container ls -a
 
 As long as the docker is still running, enter the container using:
 ```
-./enter_container.sh
+./exec.sh
 ```
 
 Once inside of the container, source the ROS noetic workspace by running:

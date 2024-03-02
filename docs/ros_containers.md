@@ -2,10 +2,15 @@
 
 ## Using Official ROS Dockers
 
-To use official ROS docker images when creating your own custom ROS images, refer to (docker's ROS image documentation)[https://hub.docker.com/_/ros/].  This page includes several helpful examples of Dockerfiles, including:
+To use official ROS docker images when creating your own custom ROS images, refer to:
+- [ROS docker tutorials](https://wiki.ros.org/docker/Tutorials/Docker)
+- [ROS docker image registry](https://registry.hub.docker.com/_/ros/)
+- [Docker's ROS image documentation](https://hub.docker.com/_/ros/)
+
+In particular, [docker's ROS image documentation](https://hub.docker.com/_/ros/) includes several helpful examples of Dockerfiles, including:
 - Creating a Dockerfile to run simple ROS2 demos
 - Creating a Dockerfile for custom ROS package development, which overlays a workspace of source code into the image and allows the code to be built within the docker
-- Creating a Dockerfile to run simple ROS1 demos
+- Creating a Dockerfile to run simple ROS1 demos (which inspired the _ROS noetic tutorial image_ described below)
 
 
 
@@ -42,7 +47,7 @@ docker container ls -a
 
 As long as the docker is still running, enter the container using:
 ```
-./enter_container.sh
+./exec.sh
 ```
 
 Once inside of the container, source the ROS noetic workspace by running:

@@ -1,6 +1,6 @@
 # Docker Image Integration in GitHub
 
-Docker image integration in GitHub differs from integration in GitLab.  See (workflow syntax for GitHub actions)[https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions] for a general overview of creating and running workflows.
+Docker image integration in GitHub differs from integration in GitLab.  See [workflow syntax for GitHub actions](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions) for a general overview of creating and running workflows.
 
 In general, workflow files must be specified in a YAML file with either `.yml` or `.yaml` extensions.  Workflow files must be stored in the `.github/workflows/` directory in the repository.
 

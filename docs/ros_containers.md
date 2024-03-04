@@ -20,7 +20,7 @@ This repo contains a simple ROS noetic image within the directory `ros_noetic_tu
 
 Get to the `ros_noetic_tutorial_image` source code from the top level repo:
 ```
-cd ros_noetic_tutorial_image
+cd .docker/ros_noetic_tutorial_image
 ```
 
 Build the image:

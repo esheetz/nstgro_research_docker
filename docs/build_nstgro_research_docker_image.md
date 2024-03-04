@@ -4,14 +4,14 @@ This repo is set up so all we should have to do is pull the most recent image fr
 
 Set up the required workspaces:
 ```
-./setup_val_workspace.sh
-./setup_nstgro_workspace.sh
+./workspaces/setup_val_workspace.sh
+./workspaces/setup_nstgro_workspace.sh
 ```
 These scripts create the workspaces `val_ws` and `nstgro_ws` within this repo.  Note that these workspaces are in the `.gitignore` file so they will not be added to this repo.  Also note that the `val_ws` includes minimal JSC internal dependencies, while the `nstgro_ws` includes only publicly available repos.
 
 Build the image:
 ```
-./build.sh
+./.docker/build.sh
 ```
 This will take a little time.
 
@@ -22,7 +22,7 @@ docker image ls
 
 Run docker container using the built image:
 ```
-./run.sh
+./.docker/run.sh
 ```
 This command maps the created `val_ws` and `nstgro_ws` workspaces into the container, as well as several helper scripts inside directory `workspace_helper_scripts_docker`.
 
@@ -33,7 +33,7 @@ docker container ls -a
 
 As long as the docker is still running, enter the container using:
 ```
-./exec.sh
+./.docker/exec.sh
 ```
 
 Once inside of the container, setup the mounted workspaces:

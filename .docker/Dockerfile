@@ -40,7 +40,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y \
 
 # set git permissions
 RUN git config --global --add safe.directory "*"
-# TODO ask Emma about why this is ok
 
 # set up git-aware-prompt
 RUN mkdir /.bash && cd /.bash && git clone https://github.com/jimeh/git-aware-prompt.git

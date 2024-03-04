@@ -1,0 +1,39 @@
+name: NSTGRO Research Docker Image CI
+
+# trigger workflow on push/pull_request events on any branch
+on: [push, pull_request]
+
+# workflow is a series of jobs, by default run in parallel
+jobs:
+  # unique identifier for job
+  build_docker_image:
+    # name of job
+    name: Build Docker Image Job
+    # type of machine to run job on
+    runs-on: ubuntu-latest
+    # job contains a sequence of steps
+    steps:
+      # step 1
+      - name: Print starting message
+        env:
+          DOCKER_IMAGE_NAME: NSTGRO Research Docker Image
+        run: echo "Starting to build $DOCKER_IMAGE_NAME..."
+      # step 2
+      - name: Build docker image step
+        # uses GitHub actions/checkout checks out repository so the workflow can access it
+        # see https://github.com/actions/checkout for action definition
+        uses: actions/checkout@v4
+        # note > supports a command that can be broken across multiple lines, with '\n' replaced with ' '
+        # YAML will treat leading spaces weirdly, so no leading spaces to make indenting look nice
+        run: >
+          docker build
+          --no-cache
+          --file ./Dockerfile
+          --tag my-image-name:$(date +%s)
+          .
+      # step 3
+      - name: Print ending message
+        env:
+          DOCKER_IMAGE_NAME: NSTGRO Research Docker Image
+          CONGRATS_MSG: Yay! Finished building
+        run: echo $DOCKER_IMAGE_NAME $CONGRATS_MSG!

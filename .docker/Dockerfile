@@ -42,6 +42,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y \
 RUN git config --global --add safe.directory "*"
 # TODO ask Emma about why this is ok
 
+# set up git-aware-prompt
+RUN mkdir /.bash && cd /.bash && git clone https://github.com/jimeh/git-aware-prompt.git
+
+# add git-aware-prompt commands to ~/.bashrc
+RUN echo "export GITAWAREPROMPT='/.bash/git-aware-prompt'" >> ~/.bashrc
+RUN echo "source /.bash/git-aware-prompt/main.sh" >> ~/.bashrc
+RUN echo "export PS1='\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\] \[$txtcyn\]\$git_branch\[$txtred\]\$git_dirty\[$txtrst\]\$ '" >> ~/.bashrc
+
 ### HELPFUL ~/.bashrc COMMANDS ###
 # source ROS workspace
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc

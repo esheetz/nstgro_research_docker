@@ -19,10 +19,12 @@ jobs:
           DOCKER_IMAGE_NAME: NSTGRO Research Docker Image
         run: echo "Starting to build $DOCKER_IMAGE_NAME..."
       # step 2
-      - name: Build docker image step
+      - name: Use checkout action
         # uses GitHub actions/checkout checks out repository so the workflow can access it
         # see https://github.com/actions/checkout for action definition
         uses: actions/checkout@v4
+      # step 3
+      - name: Build docker image step
         # note > supports a command that can be broken across multiple lines, with '\n' replaced with ' '
         # YAML will treat leading spaces weirdly, so no leading spaces to make indenting look nice
         run: >
@@ -31,7 +33,7 @@ jobs:
           --file ./Dockerfile
           --tag my-image-name:$(date +%s)
           .
-      # step 3
+      # step 4
       - name: Print ending message
         env:
           DOCKER_IMAGE_NAME: NSTGRO Research Docker Image

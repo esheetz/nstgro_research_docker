@@ -42,8 +42,21 @@ RUN DEBIAN_FRONTEND=noninteractive apt install --no-install-recommends -y \
 RUN git config --global --add safe.directory "*"
 # TODO ask Emma about why this is ok
 
-# launch ros package
-# ENTRYPOINT ["/bin/bash", "source /workspace_helper_scripts_docker/initialize_workspace.sh"]
-CMD ["roslaunch", "roscpp_tutorials", "talker_listener.launch"]
-# TODO change command to something else; this is unnecessary
-# ideally change to 'source initialize_workspace.sh'
+### HELPFUL ~/.bashrc COMMANDS ###
+# source ROS workspace
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
+# source val_ws
+RUN echo "alias valkyrie='echo "Sourcing Valkyrie workspace!"; source /val_ws/devel/setup.bash; cd /val_ws'" >> ~/.bashrc
+RUN echo "alias nstgro='echo "Sourcing NSTGRO workspace!"; source /nstgro_ws/devel/setup.bash; cd /nstgro_ws'" >> ~/.bashrc
+RUN echo "alias valkyrie_nstgro='echo "Sourcing additional workspaces!"; source /val_ws/devel/setup.bash; echo "Workspace: /val_ws/devel/setup.bash"; source /nstgro_ws/devel/setup.bash; echo "Workspace: /nstgro_ws/devel/setup.bash"'" >> ~/.bashrc
+
+# set default shell to bash
+SHELL ["/bin/bash", "-c"]
+# set entrypoint
+ENTRYPOINT bash
+
+# TODO run scripts when container first starts?
+# CMD works on its own, but then does not support an entrypoint into the container
+#CMD /bin/bash -c "source /root/.bashrc && source /workspace_helper_scripts_docker/initialize_workspace.sh"
+# RUN is borrowed from at_lite docker (branch humble-devel), but does not seem to have effect
+#RUN . /workspace_helper_scripts_docker/initialize_workspace.sh

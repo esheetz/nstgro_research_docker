@@ -10,10 +10,11 @@ thisdir=$(dirname "$(readlink -f "$0")")
 # echo $thisdir
 
 docker run -it                                                                          \
+           --rm                                                                         \
            -v ${thisdir}/${val_workspace_name}/:/${val_workspace_name}/                 \
            -v ${thisdir}/${nstgro_workspace_name}/:/${nstgro_workspace_name}/           \
            -v ${thisdir}/${helper_scripts_dir}/:/${helper_scripts_dir}/                 \
+           --network=host                                                               \
+           --entrypoint /bin/bash                                                       \
            --name $container_name                                                       \
            $image_name
-
-# -v ${thisdir}/ros_entrypoint.sh:~/ros_entrypoint.sh                   \

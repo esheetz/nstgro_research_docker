@@ -1,4 +1,4 @@
-name: NSTGRO Research Docker Image CI
+name: NSTGRO Research Docker Image Build CI
 
 # trigger workflow on push/pull_request events on any branch
 on: [push, pull_request]

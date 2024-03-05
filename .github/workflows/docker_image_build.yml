@@ -38,4 +38,4 @@ jobs:
         env:
           DOCKER_IMAGE_NAME: NSTGRO Research Docker Image
           CONGRATS_MSG: Yay! Finished building
-        run: echo $DOCKER_IMAGE_NAME $CONGRATS_MSG!
+        run: echo $CONGRATS_MSG $DOCKER_IMAGE_NAME!

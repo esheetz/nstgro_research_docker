@@ -11,6 +11,8 @@ env:
   REGISTRY: ghcr.io
   # image name same as repository
   IMAGE_NAME: ${{ github.repository }}
+  # repo name
+  REPO_NAME: ${{ github.repository }}
 
 # workflow is a series of jobs, by default run in parallel
 jobs:
@@ -34,7 +36,7 @@ jobs:
       - name: Print starting message
         env:
           DOCKER_IMAGE_NAME: NSTGRO Research Docker Image
-        run: echo "Starting to build $DOCKER_IMAGE_NAME..."
+        run: echo "Starting to build and publish $DOCKER_IMAGE_NAME to GitHub Container Registry..."
 
       - name: Use checkout action
         # uses GitHub actions/checkout checks out repository so the workflow can access it
@@ -79,7 +81,8 @@ jobs:
       - name: Print image ID
         env:
           DOCKER_IMAGE_ID: ${{ steps.image.outputs.imageid }}
-        run: echo "Built and pushed docker image id $DOCKER_IMAGE_ID"
+          THIS_REPO_NAME: ${{ env.REPO_NAME }}
+        run: echo "Built and pushed docker image id $DOCKER_IMAGE_ID! Image should be visible in  GitHub Packages for repo $THIS_REPO_NAME"
 
       - name: Print ending message
         env:

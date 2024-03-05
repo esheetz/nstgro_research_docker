@@ -40,3 +40,31 @@ source ros_entrypoint.sh
 # remove docker container
 docker container rm <container-name>
 ```
+
+
+
+## Container Registry Commands
+
+```
+# login to GitHub Container Registry
+export GHCR_PAT=<YOUR-TOKEN>
+echo $GHCR_PAT | docker login ghcr.io -u <YOUR-USERNAME> --password-stdin
+
+# pull image from registry
+docker pull ghcr.io/<NAMESPACE>/<IMAGE-NAME>:<TAG>
+# note that for images built/pushed using GitHub workflow:
+#     <NAMESPACE> is also the account username
+#     <IMAGE-NAME> will default to repo name
+#     <TAG> will default to branch name
+
+# pull image from registry by image tag
+docker pull ghcr.io/<NAMESPACE>/<IMAGE-NAME>@<YOUR-SHA-VALUE>
+# note that <YOUR-SHA-VALUE> can be found in container registry
+
+# push image to registry
+docker push ghcr.io/<NAMESPACE>/<IMAGE-NAME>:<TAG>
+# note that for images built/pushed using GitHub workflow:
+#     <NAMESPACE> is also the account username
+#     <IMAGE-NAME> will default to repo name
+#     <TAG> can be anything, usually `latest`
+```

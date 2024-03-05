@@ -57,16 +57,20 @@ RUN echo "export PS1='\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[
 # source ROS workspace
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 # source val_ws
-RUN echo "alias valkyrie='echo "Sourcing Valkyrie workspace!"; source /val_ws/devel/setup.bash; cd /val_ws'" >> ~/.bashrc
-RUN echo "alias nstgro='echo "Sourcing NSTGRO workspace!"; source /nstgro_ws/devel/setup.bash; cd /nstgro_ws'" >> ~/.bashrc
-RUN echo "alias valkyrie_nstgro='echo "Sourcing additional workspaces!"; source /val_ws/devel/setup.bash; echo "Workspace: /val_ws/devel/setup.bash"; source /nstgro_ws/devel/setup.bash; echo "Workspace: /nstgro_ws/devel/setup.bash"'" >> ~/.bashrc
+RUN echo "alias valkyrie='echo "Sourcing Valkyrie workspace!"; source /punkrobot/val_ws/devel/setup.bash; cd /punkrobot/val_ws'" >> ~/.bashrc
+# source nstgro_ws
+RUN echo "alias nstgro='echo "Sourcing NSTGRO workspace!"; source /punkrobot/nstgro_ws/devel/setup.bash; cd /punkrobot/nstgro_ws'" >> ~/.bashrc
+# source both val_ws and nstgro_ws
+RUN echo "alias valkyrie_nstgro='echo "Sourcing additional workspaces!"; source /punkrobot/val_ws/devel/setup.bash; echo "Workspace: /punkrobot/val_ws/devel/setup.bash"; source /punkrobot/nstgro_ws/devel/setup.bash; echo "Workspace: /punkrobot/nstgro_ws/devel/setup.bash"'" >> ~/.bashrc
+RUN echo "cd /punkrobot/" >> ~/.bashrc
 
 # set default shell to bash
 SHELL ["/bin/bash", "-c"]
 # set entrypoint
 ENTRYPOINT bash
 
-# TODO run scripts when container first starts?
+# either entrypoint or run scripts
+# run stuff on entry by adding it to ~/.bashrc
 # CMD works on its own, but then does not support an entrypoint into the container
 #CMD /bin/bash -c "source /root/.bashrc && source /workspace_helper_scripts_docker/initialize_workspace.sh"
 # RUN is borrowed from at_lite docker (branch humble-devel), but does not seem to have effect

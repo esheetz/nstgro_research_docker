@@ -14,6 +14,7 @@ container_name="punkrobot"
 nstgro_workspace_name="nstgro_ws"
 val_workspace_name="val_ws"
 helper_scripts_dir="workspace_helper_scripts_docker"
+docker_folder="punkrobot"
 
 # get this directory
 thisdir=$(dirname "$(readlink -f "$0")")
@@ -21,18 +22,18 @@ thisdir=$(dirname "$(readlink -f "$0")")
 # allow container to show GUIs
 xhost +si:localuser:root
 
-docker run -it                                                                              \
-           --rm                                                                             \
-           --env="DISPLAY=$DISPLAY"                                                         \
-           --env="QT_X11_NO_MITSHM=1"                                                       \
-           --env="XAUTHORITY=$XAUTH"                                                        \
-           --volume="$XAUTH:$XAUTH"                                                         \
-           -e DISPLAY                                                                       \
-           -v /tmp/.X11-unix:/tmp/.X11-unix                                                 \
-           -v ${thisdir}/../${val_workspace_name}/:/${val_workspace_name}/                  \
-           -v ${thisdir}/../${nstgro_workspace_name}/:/${nstgro_workspace_name}/            \
-           -v ${thisdir}/../${helper_scripts_dir}/:/${helper_scripts_dir}/                  \
-           --network=host                                                                   \
-           --entrypoint /bin/bash                                                           \
-           --name $container_name                                                           \
+docker run -it                                                                                                  \
+           --rm                                                                                                 \
+           --env="DISPLAY=$DISPLAY"                                                                             \
+           --env="QT_X11_NO_MITSHM=1"                                                                           \
+           --env="XAUTHORITY=$XAUTH"                                                                            \
+           --volume="$XAUTH:$XAUTH"                                                                             \
+           -e DISPLAY                                                                                           \
+           -v /tmp/.X11-unix:/tmp/.X11-unix                                                                     \
+           -v ${thisdir}/../${val_workspace_name}/:/${docker_folder}/${val_workspace_name}/                     \
+           -v ${thisdir}/../${nstgro_workspace_name}/:/${docker_folder}/${nstgro_workspace_name}/               \
+           -v ${thisdir}/../${helper_scripts_dir}/:/${docker_folder}/${helper_scripts_dir}/                     \
+           --network=host                                                                                       \
+           --entrypoint /bin/bash                                                                               \
+           --name $container_name                                                                               \
            $image_name

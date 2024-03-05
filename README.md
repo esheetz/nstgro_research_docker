@@ -51,7 +51,7 @@ To use the image from the GitHub Container Registry:
 
 5.  Once inside of the container, verify the setup of the mounted workspaces:
     ```
-    source /workspace_helper_scripts_docker/initialize_workspace.sh
+    source workspace_helper_scripts_docker/initialize_workspace.sh
     ```
     This will source the ROS noetic workspace, build the `val_ws`, source the `val_ws`, and initialize the `nstgro_ws`.  Note this only needs to be done once to properly configure and overlay the workspaces.  The corresponding `build` and `devel` spaces will be stored on the host, not within the docker container.  So once the workspaces are initialized and configured to extend the appropriate workspace, this script will not be needed.
 

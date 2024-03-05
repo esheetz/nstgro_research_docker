@@ -38,7 +38,7 @@ This repo is set up so all we should have to do is pull the most recent image fr
 
 7.  Once inside of the container, setup the mounted workspaces:
     ```
-    source /workspace_helper_scripts_docker/initialize_workspace.sh
+    source workspace_helper_scripts_docker/initialize_workspace.sh
     ```
     This will source the ROS noetic workspace, build the `val_ws`, source the `val_ws`, and initialize the `nstgro_ws`.
 

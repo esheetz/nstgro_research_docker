@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# docker user variables
+docker_folder="punkrobot"
+
+# workspace names
 val_workspace_name="val_ws"
 nstgro_workspace_name="nstgro_ws"
 
@@ -7,7 +11,8 @@ nstgro_workspace_name="nstgro_ws"
 source /opt/ros/$ROS_DISTRO/setup.bash
 
 # set up val workspace
-cd /${val_workspace_name}/
+cd /${docker_folder}/${val_workspace_name}/
+catkin clean
 catkin init
 catkin build
 
@@ -15,6 +20,6 @@ catkin build
 source devel/setup.bash
 
 # set up NSTGRO workspace
-cd /${nstgro_workspace_name}/
+cd /${docker_folder}/${nstgro_workspace_name}/
 catkin clean
 catkin init

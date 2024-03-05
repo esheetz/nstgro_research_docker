@@ -73,12 +73,12 @@ jobs:
           # bool indicating image should be published to container registry
           push: true
           # access metadata setup in previous step
-          tags: ${{ step.meta.outputs.tags }}
-          labels: ${{ step.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: Print image ID
         env:
-          DOCKER_IMAGE_ID: ${{ step.image.outputs.imageid }}
+          DOCKER_IMAGE_ID: ${{ steps.image.outputs.imageid }}
         run: echo "Built and pushed docker image id $DOCKER_IMAGE_ID"
 
       - name: Print ending message

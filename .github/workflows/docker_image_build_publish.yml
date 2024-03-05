@@ -1,0 +1,88 @@
+name: NSTGRO Research Docker Image Build and Publish CI
+# this workflow is adapted from here:
+# https://docs.github.com/en/actions/publishing-packages/publishing-docker-images#publishing-images-to-github-packages
+
+# trigger workflow on push/pull_request events on any branch
+on: [push, pull_request]
+
+# setup environment for workflow
+env:
+  # GitHub Container Registry (GHCR)
+  REGISTRY: ghcr.io
+  # image name same as repository
+  IMAGE_NAME: ${{ github.repository }}
+
+# workflow is a series of jobs, by default run in parallel
+jobs:
+  # unique identifier for job
+  build_and_push_image:
+
+    # name of job
+    name: Build and Push Docker Image Job
+
+    # type of machine to run job on
+    runs-on: ubuntu-latest
+
+    # set permissions for the secret GITHUB_TOKEN generated for this workflow
+    permissions:
+      contents: read
+      packages: write
+
+    # job contains a sequence of steps
+    steps:
+
+      - name: Print starting message
+        env:
+          DOCKER_IMAGE_NAME: NSTGRO Research Docker Image
+        run: echo "Starting to build $DOCKER_IMAGE_NAME..."
+
+      - name: Use checkout action
+        # uses GitHub actions/checkout checks out repository so the workflow can access it
+        # see https://github.com/actions/checkout for action definition
+        uses: actions/checkout@v4
+
+      - name: Log in to the GitHub Container Registry
+        # uses GitHub docker/login-action to log in to GHCR
+        # see https://github.com/docker/login-action for action definition
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        # set step id to be referenced in a later step
+        id: meta
+        # uses GitHub docker/metadata-action to extract tags and labels that will be applied to image
+        # see https://github.com/docker/metadata-action for action definition
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      - name: Build and push Docker image
+        # set step id to be referenced in a later step
+        id: image
+        # uses GitHub docker/build-push-action to:
+        #     build the image based on the repo's Dockerfile
+        #     if build succeeds, push the image to GitHub Packages
+        # see https://github.com/docker/build-push-action for action definition
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          # context defines build context as set of files located in specified path (relative to top-level repo)
+          context: .docker
+          # bool indicating image should be published to container registry
+          push: true
+          # access metadata setup in previous step
+          tags: ${{ step.meta.outputs.tags }}
+          labels: ${{ step.meta.outputs.labels }}
+
+      - name: Print image ID
+        env:
+          DOCKER_IMAGE_ID: ${{ step.image.outputs.imageid }}
+        run: echo "Built and pushed docker image id $DOCKER_IMAGE_ID"
+
+      - name: Print ending message
+        env:
+          DOCKER_IMAGE_NAME: NSTGRO Research Docker Image
+          CONGRATS_MSG: Yay! Finished building and publishing
+        run: echo $CONGRATS_MSG $DOCKER_IMAGE_NAME!

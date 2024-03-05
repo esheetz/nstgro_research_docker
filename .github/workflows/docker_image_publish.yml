@@ -3,9 +3,9 @@ name: NSTGRO Research Docker Image Publish CI
 # trigger workflow when docker image build workflow is complete
 on:
   workflow_run:
-    workflows: [NSTGRO Research Docker Image Build CI]
-    types:
-      - completed
+    workflows: ["NSTGRO Research Docker Image Build CI"]
+    types: [completed]
+    branches: [main, feature/create-docker-image]
 
 # workflow
 jobs:

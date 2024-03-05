@@ -5,8 +5,8 @@ val_workspace_name="../val_ws"
 workspace_yaml_file="val_workspace.yaml"
 
 # make workspace directory
-mkdir ${val_workspace_name}
-mkdir ${val_workspace_name}/src
+mkdir ${thisdir}/${val_workspace_name}
+mkdir ${thisdir}/${val_workspace_name}/src
 echo "created workspace ${thisdir}/${val_workspace_name}"
 
 # import workspace

@@ -5,8 +5,8 @@ nstgro_workspace_name="../nstgro_ws"
 workspace_yaml_file="nstgro_workspace.yaml"
 
 # make workspace directory
-mkdir ${nstgro_workspace_name}
-mkdir ${nstgro_workspace_name}/src
+mkdir ${thisdir}/${nstgro_workspace_name}
+mkdir ${thisdir}/${nstgro_workspace_name}/src
 echo "created workspace ${thisdir}/${nstgro_workspace_name}"
 
 # import workspace

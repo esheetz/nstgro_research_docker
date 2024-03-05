@@ -20,6 +20,10 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get install -y \
       python3-vcstool
 
+# install terminator
+RUN apt-get update && apt-get install --no-install-recommends -y \
+      terminator
+
 # update and upgrade required before installing next steps
 RUN apt-get -y update --fix-missing && \
     apt-get -y upgrade

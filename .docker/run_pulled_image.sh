@@ -10,7 +10,7 @@
 
 # set up variables
 pulled_image_name="ghcr.io/esheetz/nstgro_research_docker"
-pulled_image_tag="feature-create-docker-image"
+pulled_image_tag="main"
 container_name="punkrobot_nstgro"
 nstgro_workspace_name="nstgro_ws"
 val_workspace_name="val_ws"

@@ -1,0 +1,9 @@
+repositories:
+  ihmc_controller_msgs:
+    type: git
+    url: https://js-er-code.jsc.nasa.gov/esheetz/ihmc_controller_msgs.git
+    version: main
+  val_vr_ros:
+    type: git
+    url: https://js-er-code.jsc.nasa.gov/vs/val_vr_ros.git
+    version: noetic-devel

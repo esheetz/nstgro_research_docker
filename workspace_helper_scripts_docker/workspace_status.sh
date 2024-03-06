@@ -2,12 +2,11 @@ currdir=${PWD}
 echo "current directory ${PWD}"
 
 # docker user variables
-docker_end_user="punkrobot"
-docker_user_home="/home/${docker_end_user}"
+docker_folder="punkrobot"
 
 # absolute path within docker
 nstgro_workspace_name="nstgro_ws"
-workspace_src_dir="${docker_user_home}/${nstgro_workspace_name}/src/"
+workspace_src_dir="/${docker_folder}/${nstgro_workspace_name}/src/"
 echo "checking status of repos in ${workspace_src_dir}"
 echo ""
 

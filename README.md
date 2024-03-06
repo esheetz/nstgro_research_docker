@@ -28,7 +28,7 @@ To use the image from the GitHub Container Registry:
 
 1.  Pull the docker image:
     ```
-    docker pull ghcr.io/esheetz/nstgro_research_docker:feature-create-docker-image
+    docker pull ghcr.io/esheetz/nstgro_research_docker:main
     ```
     This will take a long time.
 
@@ -99,6 +99,6 @@ To check if there are changes to commit in any repo within the `nstgro_ws` on th
 
 To check if there are changes to commit in any repo within the `nstgro_ws` in the docker container, run the following script:
 ```
-./workspace_helper_scripts_docker/workspace_status.sh
+workspace_helper_scripts_docker/workspace_status.sh
 ```
 Note that this script is contained in one of the volumes mapped into the docker container at runtime.

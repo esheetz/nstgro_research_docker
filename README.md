@@ -5,6 +5,7 @@ Code to learn about dockers and build a docker image for my NASA Space Technolog
 * [Documentation](#documentation)
 * [Docker Setup](#docker-setup)
 * [Development within the Docker](#development-within-the-docker)
+    * [Ownership/Permission Errors on Host](#ownership/permission-errors-on-host)
     * [Checking for Changes on Host](#checking-for-changes-on-host)
     * [Checking for Changes in Docker Container](#checking-for-changes-in-docker-container)
 
@@ -84,6 +85,19 @@ This docker image is meant to support active code development in the following w
 *  Note that depending on how user is set on host and in the docker, there may be issues with file permissions.
 
 Since code can be pushed from both the host and the docker container, this repo includes a few scripts to help quickly check if there are changes made to any of the active development repositories in the `nstgro_ws` workspace.  See the following sub-sections for more.
+
+
+
+### Ownership/Permission Errors on Host
+
+If there are issues with permissions (for example, the docker owns files and will not allow the host to edit/save files without sudo access), run the following script to transfer ownership of all source code back to the given user:
+```
+./workspace_helper_scripts/set_host_source_ownership.sh <USER>
+```
+For example, to transfer ownership from the docker to user `esheetz`, run:
+```
+./workspace_helper_scripts/set_host_source_ownership.sh esheetz
+```
 
 
 

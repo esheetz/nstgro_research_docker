@@ -99,6 +99,10 @@ For example, to transfer ownership from the docker to user `esheetz`, run:
 ./workspace_helper_scripts/set_host_source_ownership.sh esheetz
 ```
 
+Note that especially during development, this can get tricky depending on where files are created and where git commits/pushes come from.  Files created within the docker will be owned by the docker.  Commits and pushes update the `.git/` configuration for a repository, meaning commits/pushes from within the docker edit and claim ownership of these files.  This means that if development is happening on host, permission issues may arise when saving changes on host or performing git operations on host.  To resolve these issues, either:
+- Rerun the ownership script to allow host to reclaim all files, including `.git/` files.
+- Only create files and perform git operations on host and use the docker to build and run source code.
+
 
 
 ### Checking for Changes on Host

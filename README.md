@@ -38,6 +38,7 @@ To use the image from the GitHub Container Registry:
     ./workspaces/setup_val_workspace.sh
     ./workspaces/setup_nstgro_workspace.sh
     ```
+    NOTE FOR DEVELOPMENT: check the branches for the repositories in the YAML files in the `workspaces/` directory. They may need to be set to the appropriate feature branches.
 
 3.  Run the docker container from the pulled image:
     ```

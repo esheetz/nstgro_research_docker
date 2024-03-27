@@ -7,6 +7,10 @@ repositories:
     type: git
     url: https://github.com/ros/robot_state_publisher.git
     version: kinetic-devel
+  safety_aware_reasoning:
+    type: git
+    url: https://github.com/esheetz/safety_aware_reasoning.git
+    version: main
   semantic_frame_pipeline:
     type: git
     url: https://github.com/mattshan/pipeline.git

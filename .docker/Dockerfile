@@ -16,9 +16,10 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && apt-get install -y \
       git
 
-# install vcstool
+# install vcstool and pip
 RUN apt-get install -y \
-      python3-vcstool
+      python3-vcstool \
+      python3-pip
 
 # install terminator
 RUN apt-get update && apt-get install --no-install-recommends -y \
@@ -33,6 +34,9 @@ RUN apt install --no-install-recommends -y \
       ros-noetic-moveit && \
     rm -rf /var/lib/apt/lists/*
 # TODO more minimal MoveIt install? because this is massive and takes forever to build image
+
+# install python modules
+RUN pip install pandas
 
 # update and upgrade required before installing next steps
 RUN apt-get -y update --fix-missing && \

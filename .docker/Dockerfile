@@ -36,7 +36,10 @@ RUN apt install --no-install-recommends -y \
 # TODO more minimal MoveIt install? because this is massive and takes forever to build image
 
 # install python modules
-RUN pip install pandas
+RUN pip install -U \
+      pandas \
+      scikit-learn \
+      statsmodels
 
 # update and upgrade required before installing next steps
 RUN apt-get -y update --fix-missing && \

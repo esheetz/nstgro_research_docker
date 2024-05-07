@@ -33,10 +33,11 @@ To use the image from the GitHub Container Registry:
     ```
     This will take a long time.
 
-2.  This docker image expects the `nstgro_ws` and `val_ws` to exist in the top level of this repository.  If these workspace are not already set up, run the scripts:
+2.  This docker image expects the `nstgro_ws`, `val_ws`, and generic `ros1_ws` (good for sandboxing generic ROS1 projects) to exist in the top level of this repository.  If these workspace are not already set up, run the scripts:
     ```
     ./workspaces/setup_val_workspace.sh
     ./workspaces/setup_nstgro_workspace.sh
+    ./workspaces/setup_ros1_workspace.sh
     ```
     NOTE FOR DEVELOPMENT: check the branches for the repositories in the YAML files in the `workspaces/` directory. They may need to be set to the appropriate feature branches.
 
@@ -44,7 +45,7 @@ To use the image from the GitHub Container Registry:
     ```
     ./.docker/run_pulled_image.sh
     ```
-    This script maps the created `val_ws` and `nstgro_ws` workspaces into the container, as well as several helper scripts inside directory `workspace_helper_scripts_docker`.
+    This script maps the created `val_ws`, `nstgro_ws`, and `ros1_ws` workspaces into the container, as well as several helper scripts inside directory `workspace_helper_scripts_docker`.
 
 4.  As long as the docker container is still running, enter the container using:
     ```
@@ -55,7 +56,7 @@ To use the image from the GitHub Container Registry:
     ```
     source workspace_helper_scripts_docker/initialize_workspace.sh
     ```
-    This will source the ROS noetic workspace, build the `val_ws`, source the `val_ws`, and initialize the `nstgro_ws`.  Note this only needs to be done once to properly configure and overlay the workspaces.  The corresponding `build` and `devel` spaces will be stored on the host, not within the docker container.  So once the workspaces are initialized and configured to extend the appropriate workspace, this script will not be needed.
+    This will source the ROS noetic workspace, build the generic `ros1_ws`, build the `val_ws`, source the `val_ws`, and initialize the `nstgro_ws`.  Note this only needs to be done once to properly configure and overlay the workspaces.  The corresponding `build` and `devel` spaces will be stored on the host, not within the docker container.  So once the workspaces are initialized and configured to extend the appropriate workspace, this script will not be needed.
 
 6.  Once inside of the container, the `nstgro_ws` workspace can be built as usual (note the previous script will `cd` into the appropriate workspace directory):
     ```

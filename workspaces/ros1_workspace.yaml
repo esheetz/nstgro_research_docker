@@ -3,3 +3,7 @@ repositories:
     type: git
     url: https://js-er-code.jsc.nasa.gov/esheetz/ros_demo_project.git
     version: noetic-devel
+  ros_demo_project_msgs:
+    type: git
+    url: https://js-er-code.jsc.nasa.gov/esheetz/ros_demo_project_msgs.git
+    version: noetic-devel

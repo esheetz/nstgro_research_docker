@@ -15,13 +15,15 @@ fi
 thisdir=$(dirname "$(readlink -f "$0")")
 nstgro_workspace_name="nstgro_ws"
 val_workspace_name="val_ws"
+ros1_workspace_name="ros1_ws"
 nstgro_ws_src_dir="${thisdir}/../${nstgro_workspace_name}/src/"
 val_ws_src_dir="${thisdir}/../${val_workspace_name}/src/"
+ros1_ws_src_dir="${thisdir}/../${ros1_workspace_name}/src/"
 
 # transfer ownership to given user
 echo "transfering ownership of source directories 'nstgro_ws/src/' and 'val_ws/src/' to user $1"
 echo ""
-sudo chown $1:$1 -R $nstgro_ws_src_dir $val_ws_src_dir
+sudo chown $1:$1 -R $nstgro_ws_src_dir $val_ws_src_dir $ros1_ws_src_dir
 
 echo "verify ownership of $nstgro_ws_src_dir:"
 echo ""
@@ -31,6 +33,11 @@ echo ""
 echo "verify ownership of $val_ws_src_dir:"
 echo ""
 ls -ll $val_ws_src_dir
+echo ""
+
+echo "verify ownership of $ros1_ws_src_dir:"
+echo ""
+ls -ll $ros1_ws_src_dir
 echo ""
 
 echo "completed transfer of ownership from docker to host"

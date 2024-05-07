@@ -13,6 +13,7 @@ image_name="nstgro_research"
 container_name="punkrobot"
 nstgro_workspace_name="nstgro_ws"
 val_workspace_name="val_ws"
+ros1_workspace_name="ros1_ws"
 helper_scripts_dir="workspace_helper_scripts_docker"
 docker_folder="punkrobot"
 
@@ -32,6 +33,7 @@ docker run -it                                                                  
            -v /tmp/.X11-unix:/tmp/.X11-unix                                                                     \
            -v ${thisdir}/../${val_workspace_name}/:/${docker_folder}/${val_workspace_name}/                     \
            -v ${thisdir}/../${nstgro_workspace_name}/:/${docker_folder}/${nstgro_workspace_name}/               \
+           -v ${thisdir}/../${ros1_workspace_name}/:/${docker_folder}/${ros1_workspace_name}/                   \
            -v ${thisdir}/../${helper_scripts_dir}/:/${docker_folder}/${helper_scripts_dir}/                     \
            --network=host                                                                                       \
            --entrypoint /bin/bash                                                                               \

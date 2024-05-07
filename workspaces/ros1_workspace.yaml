@@ -1,0 +1,5 @@
+repositories:
+  ros_demo_project:
+    type: git
+    url: https://js-er-code.jsc.nasa.gov/esheetz/ros_demo_project.git
+    version: noetic-devel

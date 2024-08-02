@@ -75,11 +75,12 @@ jobs:
           # bool indicating image should be published to container registry
           push: true
           # access metadata setup in previous step
-          tags: ${{ steps.meta.outputs.tags }}
+          #tags: ${{ steps.meta.outputs.tags }}
+          tags: nstgro_research_ros1
           labels: ${{ steps.meta.outputs.labels }}
           target: ros1-val-dev
 
-      - name: Print image ID
+      - name: Print ROS1 image ID
         env:
           DOCKER_IMAGE_ID: ${{ steps.ros1_image.outputs.imageid }}
           THIS_REPO_NAME: ${{ env.REPO_NAME }}
@@ -99,11 +100,12 @@ jobs:
           # bool indicating image should be published to container registry
           push: true
           # access metadata setup in previous step
-          tags: ${{ steps.meta.outputs.tags }}
+          #tags: ${{ steps.meta.outputs.tags }}
+          tags: nstgro_research_ros2
           labels: ${{ steps.meta.outputs.labels }}
-          target: ros1-val-dev
+          target: ros2-color-blob-dev
 
-      - name: Print image ID
+      - name: Print ROS2 image ID
         env:
           DOCKER_IMAGE_ID: ${{ steps.ros2_image.outputs.imageid }}
           THIS_REPO_NAME: ${{ env.REPO_NAME }}

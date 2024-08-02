@@ -52,18 +52,19 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Extract metadata (tags, labels) for Docker
+      - name: Extract metadata (tags, labels) for ROS1 Docker
         # set step id to be referenced in a later step
-        id: meta
+        id: ros1_meta
         # uses GitHub docker/metadata-action to extract tags and labels that will be applied to image
         # see https://github.com/docker/metadata-action for action definition
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: nstgro_research_ros1
 
-      - name: Build and push Docker image
+      - name: Build and push ROS1 Docker image
         # set step id to be referenced in a later step
-        id: image
+        id: ros1_image
         # uses GitHub docker/build-push-action to:
         #     build the image based on the repo's Dockerfile
         #     if build succeeds, push the image to GitHub Packages
@@ -75,17 +76,54 @@ jobs:
           # bool indicating image should be published to container registry
           push: true
           # access metadata setup in previous step
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.ros1_meta.outputs.tags }}
+          # tags: nstgro_research_ros1
+          labels: ${{ steps.ros1_meta.outputs.labels }}
+          target: ros1-val-dev
 
-      - name: Print image ID
+      - name: Print ROS1 image ID
         env:
-          DOCKER_IMAGE_ID: ${{ steps.image.outputs.imageid }}
+          DOCKER_IMAGE_ID: ${{ steps.ros1_image.outputs.imageid }}
+          THIS_REPO_NAME: ${{ env.REPO_NAME }}
+        run: echo "Built and pushed docker image id $DOCKER_IMAGE_ID! Image should be visible in  GitHub Packages for repo $THIS_REPO_NAME"
+
+      - name: Extract metadata (tags, labels) for ROS2 Docker
+        # set step id to be referenced in a later step
+        id: ros2_meta
+        # uses GitHub docker/metadata-action to extract tags and labels that will be applied to image
+        # see https://github.com/docker/metadata-action for action definition
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: nstgro_research_ros2
+
+      - name: Build and push ROS2 Docker image
+        # set step id to be referenced in a later step
+        id: ros2_image
+        # uses GitHub docker/build-push-action to:
+        #     build the image based on the repo's Dockerfile
+        #     if build succeeds, push the image to GitHub Packages
+        # see https://github.com/docker/build-push-action for action definition
+        uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
+        with:
+          # context defines build context as set of files located in specified path (relative to top-level repo)
+          context: .docker
+          # bool indicating image should be published to container registry
+          push: true
+          # access metadata setup in previous step
+          tags: ${{ steps.ros2_meta.outputs.tags }}
+          # tags: nstgro_research_ros2
+          labels: ${{ steps.ros2_meta.outputs.labels }}
+          target: ros2-color-blob-dev
+
+      - name: Print ROS2 image ID
+        env:
+          DOCKER_IMAGE_ID: ${{ steps.ros2_image.outputs.imageid }}
           THIS_REPO_NAME: ${{ env.REPO_NAME }}
         run: echo "Built and pushed docker image id $DOCKER_IMAGE_ID! Image should be visible in  GitHub Packages for repo $THIS_REPO_NAME"
 
       - name: Print ending message
         env:
-          DOCKER_IMAGE_NAME: NSTGRO Research Docker Image
+          DOCKER_IMAGE_NAME: NSTGRO Research Docker Images
           CONGRATS_MSG: Yay! Finished building and publishing
         run: echo $CONGRATS_MSG $DOCKER_IMAGE_NAME!

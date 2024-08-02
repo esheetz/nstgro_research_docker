@@ -1,0 +1,13 @@
+repositories:
+  color_blob_centroid:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:foccus/color_blob_centroid.git
+    version: humble-devel
+  color_names:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/color_names.git
+    version: main
+  dex_ivr_interfaces:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/dex_ivr_interfaces.git
+    version: humble-devel

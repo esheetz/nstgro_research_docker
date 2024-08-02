@@ -10,8 +10,8 @@
 
 # set up variables
 pulled_image_name="ghcr.io/esheetz/nstgro_research_docker"
-pulled_image_tag="main"
-container_name="punkrobot_nstgro"
+pulled_image_tag="nstgro_research_ros1"
+container_name="punkrobot_nstgro_ros1"
 nstgro_workspace_name="nstgro_ws"
 val_workspace_name="val_ws"
 ros1_workspace_name="ros1_ws"
@@ -32,10 +32,10 @@ docker run -it                                                                  
            --volume="$XAUTH:$XAUTH"                                                                             \
            -e DISPLAY                                                                                           \
            -v /tmp/.X11-unix:/tmp/.X11-unix                                                                     \
-           -v ${thisdir}/../${val_workspace_name}/:/${docker_folder}/${val_workspace_name}/                     \
-           -v ${thisdir}/../${nstgro_workspace_name}/:/${docker_folder}/${nstgro_workspace_name}/               \
-           -v ${thisdir}/../${ros1_workspace_name}/:/${docker_folder}/${ros1_workspace_name}/                   \
-           -v ${thisdir}/../${helper_scripts_dir}/:/${docker_folder}/${helper_scripts_dir}/                     \
+           -v ${thisdir}/../../${val_workspace_name}/:/${docker_folder}/${val_workspace_name}/                     \
+           -v ${thisdir}/../../${nstgro_workspace_name}/:/${docker_folder}/${nstgro_workspace_name}/               \
+           -v ${thisdir}/../../${ros1_workspace_name}/:/${docker_folder}/${ros1_workspace_name}/                   \
+           -v ${thisdir}/../../${helper_scripts_dir}/:/${docker_folder}/${helper_scripts_dir}/                     \
            --network=host                                                                                       \
            --entrypoint /bin/bash                                                                               \
            --name $container_name                                                                               \

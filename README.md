@@ -1,9 +1,11 @@
 # NSTGRO Research Docker
 
-Code to learn about dockers and build a docker image for my NASA Space Technology Graduate Research Opportunity (NSTGRO) research as part of my PhD.
+Code to learn about dockers and build a docker images for my NASA Space Technology Graduate Research Opportunity (NSTGRO) research as part of my PhD.
 
 * [Documentation](#documentation)
 * [Docker Setup](#docker-setup)
+    * [ROS1 Docker Setup](#ros1-docker-setup)
+    * [ROS2 Docker Setup](#ros2-docker-setup)
 * [Development within the Docker](#development-within-the-docker)
     * [Ownership/Permission Errors on Host](#ownership/permission-errors-on-host)
     * [Checking for Changes on Host](#checking-for-changes-on-host)
@@ -23,13 +25,15 @@ Part of the purpose of this repo is to provide some general learning/reminders a
 
 ## Docker Setup
 
-The NSTGRO Research docker image has already been built and published to the GitHub Container Registry.  For information on how to build this image locally, see [Build the NSTGRO Research Docker Image](docs/build_nstgro_research_docker_image.md).
+The NSTGRO Research docker images have already been built and published to the GitHub Container Registry.  For information on how to build this image locally, see [Build the NSTGRO Research Docker Images](docs/build_nstgro_research_docker_image.md).
+
+### ROS1 Docker Setup
 
 To use the image from the GitHub Container Registry:
 
 1.  Pull the docker image:
     ```
-    docker pull ghcr.io/esheetz/nstgro_research_docker:main
+    docker pull ghcr.io/esheetz/nstgro_research_docker:nstgro_research_ros1
     ```
     This will take a long time.
 
@@ -43,18 +47,18 @@ To use the image from the GitHub Container Registry:
 
 3.  Run the docker container from the pulled image:
     ```
-    ./.docker/run_pulled_image.sh
+    ./.docker/ros1_image_scripts/run_pulled_image.sh
     ```
     This script maps the created `val_ws`, `nstgro_ws`, and `ros1_ws` workspaces into the container, as well as several helper scripts inside directory `workspace_helper_scripts_docker`.
 
 4.  As long as the docker container is still running, enter the container using:
     ```
-    ./.docker/exec_pulled_image.sh
+    ./.docker/ros1_image_scripts/exec_pulled_image.sh
     ```
 
 5.  Once inside of the container, verify the setup of the mounted workspaces:
     ```
-    source workspace_helper_scripts_docker/initialize_workspace.sh
+    source workspace_helper_scripts_docker/initialize_workspaces_ros1.sh
     ```
     This will source the ROS noetic workspace, build the generic `ros1_ws`, build the `val_ws`, source the `val_ws`, and initialize the `nstgro_ws`.  Note this only needs to be done once to properly configure and overlay the workspaces.  The corresponding `build` and `devel` spaces will be stored on the host, not within the docker container.  So once the workspaces are initialized and configured to extend the appropriate workspace, this script will not be needed.
 
@@ -68,6 +72,52 @@ To use the image from the GitHub Container Registry:
     valkyrie            # source val_ws and cd into val_ws
     nstgro              # source nstgro_ws and cd into nstgro_ws
     valkyrie_nstgro     # source val_ws and source nstgro_ws (which extends val_ws), does not cd
+    ```
+
+8.  To exit container, `Ctrl-C` out of the terminal that ran the `run` script.  The container is run so that it will be automatically removed on exit.
+
+### ROS2 Docker Setup
+
+To use the image from the GitHub Container Registry:
+
+1.  Pull the docker image:
+    ```
+    docker pull ghcr.io/esheetz/nstgro_research_docker:nstgro_research_ros2
+    ```
+    This will take a while, but not terribly long.
+
+2.  This docker image expects the `color_blob_ws` to exist in the top level of this repository.  If these workspace are not already set up, run the scripts:
+    ```
+    ./workspaces/setup_color_blob_workspace.sh
+    ```
+
+3.  Run the docker container from the pulled image:
+    ```
+    ./.docker/ros2_image_scripts/run_pulled_image.sh
+    ```
+    This script maps the created `color_blob_ws` workspace into the container, as well as several helper scripts inside directory `workspace_helper_scripts_docker`. It also sets parameters needed to run the ROS2 docker container on the Valkyrie console, specifically by setting the `ROS_DOMAIN_ID`.
+
+4.  As long as the docker container is still running, enter the container using:
+    ```
+    ./.docker/ros2_image_scripts/exec_pulled_image.sh
+    ```
+
+5.  Once inside of the container, verify the setup of the mounted workspaces:
+    ```
+    source workspace_helper_scripts_docker/initialize_workspaces_ros2.sh
+    ```
+    This will source the ROS humble workspace and initialize the `color_blob_ws`.  Note this only needs to be done once to properly configure and overlay the workspaces.  The corresponding `build` and `install` spaces will be stored on the host, not within the docker container.  So once the workspaces are initialized and configured to extend the appropriate workspace, this script will not be needed.
+
+6.  Once inside of the container, the `color_blob_ws` workspace can be built as usual (note the previous script will `cd` into the appropriate workspace directory):
+    ```
+    colcon build
+    ```
+
+7.  The docker image `~/.bashrc` is configured to automatically source the ROS2 humble workspace, so all ROS2 command line tools will be available upon entering the container.  The docker image `~/.bashrc` also includes the following aliases that will help source workspaces and check ROS dependencies for development:
+    ```
+    color_blob          # source color_blob_ws and cd into color_blob_ws
+    check_it            # check rosdeps
+    rosdep_it           # install rosdeps
     ```
 
 8.  To exit container, `Ctrl-C` out of the terminal that ran the `run` script.  The container is run so that it will be automatically removed on exit.

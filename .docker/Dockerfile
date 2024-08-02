@@ -158,6 +158,9 @@ RUN echo "export PS1='\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
 # set up colcon tab completion
 RUN echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc
+# add FastDDS configuration
+COPY config/fastdds.xml /root/fastdds.xml
+RUN echo "export FASTRTPS_DEFAULT_PROFILES_FILE=/root/fastdds.xml" >> ~/.bashrc
 # rosdeps
 RUN echo "alias check_it='rosdep check --from-paths . -i --rosdistro "$ROS_DISTRO"'" >> ~/.bashrc
 RUN echo "alias rosdep_it='rosdep install --from-paths . -i -y --rosdistro "$ROS_DISTRO"'" >> ~/.bashrc

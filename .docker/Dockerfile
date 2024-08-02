@@ -111,8 +111,9 @@ ENTRYPOINT bash
 FROM ros:humble AS ros2-base
 # at this point ROS_DISTRO=humble
 
-# install vcstool and pip
+# install colcon clean extension, vcstool, and pip
 RUN apt-get update && apt-get install -y \
+      python3-colcon-clean \
       python3-vcstool \
       python3-pip
 
@@ -126,7 +127,17 @@ RUN apt-get -y update --fix-missing && \
 
 # base image for color blob dependencies
 FROM ros2-base AS ros2-color-blob-base
-# TODO
+
+# install ros packages
+RUN apt-get update && apt-get install -y \
+      ros-${ROS_DISTRO}-image-transport \
+      ros-${ROS_DISTRO}-cv-bridge \
+      ros-${ROS_DISTRO}-image-geometry
+
+# install OpenCV
+RUN apt-get update && apt-get install -y \
+      libopencv-dev \
+      python3-opencv
 
 # base image for developing with color blob dependencies
 FROM ros2-color-blob-base AS ros2-color-blob-dev
@@ -142,6 +153,11 @@ RUN echo "export PS1='\${debian_chroot:+(\$debian_chroot)}\[\033[01;32m\]\u@\h\[
 ### HELPFUL ~/.bashrc COMMANDS ###
 # source ROS workspace
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> ~/.bashrc
+# set up colcon tab completion
+RUN echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc
+# rosdeps
+RUN echo "alias check_it='rosdep check --from-paths . -i --rosdistro "$ROS_DISTRO"'" >> ~/.bashrc
+RUN echo "alias rosdep_it='rosdep install --from-paths . -i -y --rosdistro "$ROS_DISTRO"'" >> ~/.bashrc
 # source color_blob_ws
 RUN echo "alias color_blob='echo "Sourcing Color Blob workspace!"; source /punkrobot/color_blob_ws/install/setup.bash; cd /punkrobot/color_blob_ws'" >> ~/.bashrc
 # source both val_ws and nstgro_ws

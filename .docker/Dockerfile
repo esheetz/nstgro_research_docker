@@ -142,6 +142,9 @@ RUN apt-get update && apt-get install -y \
 # base image for developing with color blob dependencies
 FROM ros2-color-blob-base AS ros2-color-blob-dev
 
+# set git permissions
+RUN git config --global --add safe.directory "*"
+
 # set up git-aware-prompt
 RUN mkdir /.bash && cd /.bash && git clone https://github.com/jimeh/git-aware-prompt.git
 

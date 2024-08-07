@@ -9,7 +9,7 @@ DOCKER_BUILDKIT=1 docker build --pull                                       \
                                --file ${thisdir}/Dockerfile                 \
                                --progress=plain                             \
                                --tag $tag_name                              \
-                               --target ros2-color-blob-dev                 \
+                               --target ros2-dev                            \
                                ${thisdir}                                   # specifies what directory all of the docker stuff is in
 
 docker image prune --filter label=stage=builder

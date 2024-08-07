@@ -140,7 +140,15 @@ RUN apt-get update && apt-get install -y \
       python3-opencv
 
 # base image for developing with color blob dependencies
-FROM ros2-color-blob-base AS ros2-color-blob-dev
+FROM ros2-color-blob-base AS ros2-model-base
+
+# install python modules
+RUN pip3 install -U \
+      pandas \
+      scikit-learn \
+      statsmodels
+
+FROM ros2-model-base as ros2-dev
 
 # set git permissions
 RUN git config --global --add safe.directory "*"

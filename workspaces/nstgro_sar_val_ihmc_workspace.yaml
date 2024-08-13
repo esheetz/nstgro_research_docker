@@ -55,10 +55,6 @@ repositories:
     type: git
     url: https://github.com/esheetz/sar_ros2_interfaces.git
     version: humble
-  serial:
-    type: git
-    url: git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/fm/serial.git
-    version: humble
   val_ros2_control_tools:
     type: git
     url: git@js-er-code.jsc.nasa.gov:esheetz/val_ros2_control_tools.git
@@ -66,4 +62,4 @@ repositories:
   yolo:
     type: git
     url: git@js-er-code.jsc.nasa.gov:np/yolo/yolo.git
-    version: main
+    version: humble-feature/robot-testing

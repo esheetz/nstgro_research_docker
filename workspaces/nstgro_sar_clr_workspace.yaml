@@ -1,0 +1,117 @@
+repositories:
+  BehaviorTree.CPP:
+    type: git
+    url: https://github.com/BehaviorTree/BehaviorTree.CPP.git
+    version: master
+  BehaviorTree.ROS2:
+    type: git
+    url: https://github.com/BehaviorTree/BehaviorTree.ROS2.git
+    version: humble
+  chonkur:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/robots/chonkur/chonkur.git
+    version: humble-devel
+  chonkur_l_raile:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/robots/chonkur-l-rail-e/chonkur_l_raile.git
+    version: humble-devel
+  clr_isaac_environment:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:foccus/clr_isaac_environment.git
+    version: humble-devel
+  color_blob_centroid:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:foccus/color_blob_centroid.git
+    version: humble-devel
+  color_names:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/color_names.git
+    version: main
+  dex_ivr_interfaces:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/dex_ivr_interfaces.git
+    version: humble-devel
+  dextivr_hande:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/dextivr_hande.git
+    version: humble-devel
+  drt_ros2_control_tools:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/drt_ros2_control_tools.git
+    version: humble-feature/estop-safety
+  drt_ros2_launch_common:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/drt_ros2_launch_common.git
+    version: humble-devel
+  drt_soft_estop:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:esheetz/drt_soft_estop.git
+    version: humble-feature/nstgro-software-estop
+  ewellix_lift_kit:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:hw-toolbox/ewellix_lift_kit.git
+    version: humble-devel
+  imetro_clr_merlin:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/imetro-robot-applications/imetro_clr_merlin.git
+    version: humble-feature/nstgro-experiments
+  kinematics_interface:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/forked-mirrors/kinematics_interface.git
+    version: clr
+  merlin_mockup_description:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/mockup_descriptions/merlin/merlin_mockup_description.git
+    version: humble-devel
+  merlin_mockup_msgs:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/mockup_descriptions/merlin/merlin_mockup_msgs.git
+    version: humble-devel
+  merlin_mockup_state:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/mockup_descriptions/merlin/merlin_mockup_state.git
+    version: humble-devel
+  merlin_perception:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/merlin_freezer/merlin_perception.git
+    version: humble-devel
+  merlin_perception_scripts:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:foccus/merlin_perception_scripts.git
+    version: humble-devel
+  moveit2_collision_utils:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:manip/moveit2_support/moveit2_collision_utils.git
+    version: humble-devel
+  ros2_merlin_wrapper:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/merlin_freezer/ros2_merlin_wrapper.git
+    version: humble-devel
+  ros2_robotiq_gripper:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/fm/ros2_robotiq_gripper.git
+    version: humble-devel
+  ros2_yolo:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/yolo/ros2_yolo.git
+    version: humble-feature/robot-testing
+  safety_aware_reasoning_ros2_deploy:
+    type: git
+    url: https://github.com/esheetz/safety_aware_reasoning_ros2_deploy.git
+    version: humble
+  sar_ros2_interfaces:
+    type: git
+    url: https://github.com/esheetz/sar_ros2_interfaces.git
+    version: humble
+  serial:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/fm/serial.git
+    version: humble
+  vention_rail:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:hw-toolbox/vention_rail.git
+    version: humble-devel
+  yolo:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/yolo/yolo.git
+    version: main

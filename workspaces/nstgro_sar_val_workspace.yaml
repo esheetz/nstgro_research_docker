@@ -1,0 +1,69 @@
+repositories:
+  BehaviorTree.CPP:
+    type: git
+    url: https://github.com/BehaviorTree/BehaviorTree.CPP.git
+    version: master
+  BehaviorTree.ROS2:
+    type: git
+    url: https://github.com/BehaviorTree/BehaviorTree.ROS2.git
+    version: humble
+  color_blob_centroid:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:foccus/color_blob_centroid.git
+    version: humble-devel
+  color_names:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/color_names.git
+    version: main
+  controller_msgs:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:esheetz/ihmc_controller_msgs.git
+    version: humble-devel
+  dex_ivr_interfaces:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/dex_ivr_interfaces.git
+    version: humble-devel
+  drt_ros2_control_tools:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/drt_ros2_control_tools.git
+    version: humble-feature/estop-safety
+  drt_ros2_launch_common:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/drt_ros2_launch_common.git
+    version: humble-devel
+  drt_soft_estop:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:esheetz/drt_soft_estop.git
+    version: humble-feature/nstgro-software-estop-valkyrie
+  imetro_clr_merlin:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/imetro-robot-applications/imetro_clr_merlin.git
+    version: humble-feature/nstgro-experiments
+  merlin_mockup_msgs:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:imetro/mockup_descriptions/merlin/merlin_mockup_msgs.git
+    version: humble-devel
+  ros2_yolo:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/yolo/ros2_yolo.git
+    version: humble-feature/robot-testing
+  safety_aware_reasoning_ros2_deploy:
+    type: git
+    url: https://github.com/esheetz/safety_aware_reasoning_ros2_deploy.git
+    version: humble
+  sar_ros2_interfaces:
+    type: git
+    url: https://github.com/esheetz/sar_ros2_interfaces.git
+    version: humble
+  serial:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:hw-toolbox/robotiq/ros2/fm/serial.git
+    version: humble
+  val_ros2_control_tools:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:esheetz/val_ros2_control_tools.git
+    version: humble-feature/nstgro-software-estop
+  yolo:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/yolo/yolo.git
+    version: main

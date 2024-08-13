@@ -15,6 +15,10 @@ repositories:
     type: git
     url: git@js-er-code.jsc.nasa.gov:np/color_names.git
     version: main
+  controller_msgs:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:esheetz/ihmc_controller_msgs.git
+    version: humble-devel
   dex_ivr_interfaces:
     type: git
     url: git@js-er-code.jsc.nasa.gov:np/dex_ivr_interfaces.git

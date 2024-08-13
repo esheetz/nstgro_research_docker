@@ -23,6 +23,10 @@ repositories:
     type: git
     url: git@js-er-code.jsc.nasa.gov:np/dex_ivr_interfaces.git
     version: humble-devel
+  drt_behavior_trees:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:esheetz/drt_behavior_trees.git
+    version: humble-feature/nstgro-experiments
   drt_ros2_control_tools:
     type: git
     url: git@js-er-code.jsc.nasa.gov:imetro/drt_ros2_control_tools.git
@@ -35,10 +39,6 @@ repositories:
     type: git
     url: git@js-er-code.jsc.nasa.gov:esheetz/drt_soft_estop.git
     version: humble-feature/nstgro-software-estop-valkyrie
-  imetro_clr_merlin:
-    type: git
-    url: git@js-er-code.jsc.nasa.gov:imetro/imetro-robot-applications/imetro_clr_merlin.git
-    version: humble-feature/nstgro-experiments
   merlin_mockup_msgs:
     type: git
     url: git@js-er-code.jsc.nasa.gov:imetro/mockup_descriptions/merlin/merlin_mockup_msgs.git

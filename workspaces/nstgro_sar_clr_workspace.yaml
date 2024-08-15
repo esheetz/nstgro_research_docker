@@ -7,6 +7,14 @@ repositories:
     type: git
     url: https://github.com/BehaviorTree/BehaviorTree.ROS2.git
     version: humble
+  axis_camera:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/camera_drivers/axis_camera.git
+    version: humble-feature/fix_image_encoding_bug
+  camera_info_manager_py:
+    type: git
+    url: git@js-er-code.jsc.nasa.gov:np/forked-mirrors/camera_info_manager_py.git
+    version: humble-feature/axis_camera_integration
   chonkur:
     type: git
     url: git@js-er-code.jsc.nasa.gov:imetro/robots/chonkur/chonkur.git
